@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regalo Especial</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: black;
+            color: azure;
+            overflow: hidden;
+        }
+
+        /* Greeting Styles */
+        .greetings {
+            font-size: 4rem;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .greeting {
+            font-size: 2rem;
+            color: #fbff00;
+            margin-top: 20px;
+        }
+
+        .reveal {
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Flower Animation */
+        .flower-animation {
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .flower {
+            width: 150px;
+            height: 150px;
+            background-color: yellow;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            animation: bloom 2s ease-in-out forwards;
+        }
+
+        @keyframes bloom {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Button Styles */
+        .button {
+            margin-top: 40px;
+        }
+
+        .button button {
+            background-color: yellow;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .button button:hover {
+            background-color: orange;
+            box-shadow: 0 0 10px yellow, 0 0 20px yellow, 0 0 30px yellow;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .greetings {
+                font-size: 3rem;
+            }
+
+            .greeting {
+                font-size: 1.5rem;
+            }
+
+            .flower {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Greeting Message -->
+    <div class="greeting-container">
+        <h1 class="greetings reveal">Hola, Gabriela</h1>
+        <p class="greeting reveal" style="animation-delay: 1s;">Tengo un regalo especial para ti</p>
+    </div>
+
+    <!-- Flower Animation -->
+    <div class="flower-animation reveal" style="animation-delay: 2s;">
+        <div class="flower"></div>
+    </div>
+
+    <!-- Button to Play Music -->
+    <div class="button">
+        <button onclick="playMusic()">Toca para escuchar la música</button>
+    </div>
+
+    <!-- Audio (Removed Auto-play) -->
+    <audio id="bg-music" src="Floricienta.mp3" preload="auto"></audio>
+
+    <!-- Script for Music and Animation Handling -->
+    <script>
+        function playMusic() {
+            const music = document.getElementById("bg-music");
+            music.play();
+        }
+
+        window.addEventListener("load", function() {
+            const revealElements = document.querySelectorAll(".reveal");
+
+            // Add fade-in to elements
+            revealElements.forEach((el, idx) => {
+                el.style.animationDelay = `${idx * 1}s`;
+                el.classList.add('fade-in');
+            });
+        });
+    </script>
+</body>
+</html>
